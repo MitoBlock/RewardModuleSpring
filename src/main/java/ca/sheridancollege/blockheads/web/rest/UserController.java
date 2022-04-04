@@ -20,7 +20,6 @@ public class UserController {
 	private UserService userService;
 	
 	@GetMapping(value = {"", "/"})
-	//map http://localhost:8080/api/user and http://localhost:8080/api/user/
 	public User getUser(Long id) {
 		return userService.findById(id);
 	}
