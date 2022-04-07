@@ -1,29 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainPageComponent } from './main-page/main-page.component';
+import { ThirdPageComponent } from './third-page/third-page.component';
+import { UserPageComponent } from './user-page/user-page.component';
 
-/*
-const routes: Routes = [];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
-*/
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
-  /*
-  {
-    path: 'users',
-    component: UsersComponent,
-    children: [{ path: ':id/:name', component: UserComponent }],
-  }, */
+  { path: ':id', component: UserPageComponent },
+  { path: ':id/offers', component: ThirdPageComponent },
 ];
 
 @NgModule({
   imports: [
-    // RouterModule.forRoot(appRoutes, {useHash: true})
     RouterModule.forRoot(appRoutes),
   ],
   exports: [RouterModule],
