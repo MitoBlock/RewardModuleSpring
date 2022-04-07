@@ -1,7 +1,11 @@
-import { Account } from "./account"
+//import { Account } from "./account"
 
-export interface User {
-	id : number
-	name: string
-	account : Account
+export class User {
+	//id : number
+	public name: string
+	//account : Account
+	
+	constructor(name: string,) {
+		this.name = name;
+	}
 }
