@@ -2,6 +2,7 @@ package ca.sheridancollege.blockheads.web.rest;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,7 @@ import ca.sheridancollege.blockheads.services.UserService;
 
 @RestController
 @RequestMapping("/api/user")
+@CrossOrigin
 public class UserController {
 	
 	@Autowired

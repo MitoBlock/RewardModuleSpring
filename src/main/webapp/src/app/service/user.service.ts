@@ -1,6 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { EventEmitter, Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 import { User } from "../models/user";
+import { api } from "./api";
 
 @Injectable()
 export class UserService {
@@ -9,8 +11,8 @@ export class UserService {
 	
 	constructor(private http: HttpClient){}
 	
-	addUser(user : User){
-		return this.http.post('/api/user', user);
+	addUser(user : User) : Observable<User> {
+		return this.http.post<User>(`${api}user`, user);
 	}
 	
 	

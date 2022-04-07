@@ -1,9 +1,9 @@
-//import { Account } from "./account"
+import { Account } from "./account"
 
 export class User {
-	//id : number
+	id? : number
 	public name: string
-	//account : Account
+	account? : Account
 	
 	constructor(name: string,) {
 		this.name = name;
