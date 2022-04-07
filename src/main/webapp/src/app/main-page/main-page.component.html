@@ -7,9 +7,12 @@
     />
 
 		<div class="input-container">
-		<input type="text" routerLink="adduser" class="form-control" placeholder="Enter Name" required>
+			<form #userForm = "ngForm" (ngSubmit) = "onUserAdd(userForm.value)">
+				<input type="text" class="form-control" placeholder="Enter Name" name="name" [(ngModel)]="addUserName" required >
+				<input type="submit" value="Submit" class="btn btn-primary btn-lg">
+  			</form>
 		</div>
   </div>
 
-  <button class="btn btn-primary btn-lg">Submit</button>
+  
 </div>

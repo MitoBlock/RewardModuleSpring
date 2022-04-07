@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User save(User user) {
 		//Make new account for this user
+		System.out.println(user.getName());
 		Account a = new Account();
 		a.setPublicAddress(generateAddress());
 		accountRepository.save(a);
