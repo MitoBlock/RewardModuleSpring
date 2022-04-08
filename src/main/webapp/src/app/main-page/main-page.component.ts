@@ -21,8 +21,8 @@ export class MainPageComponent implements OnInit {
     this.userService.addUser(user).subscribe((newUser: User) => {
       this.addUserName = '';
       this.userService.onUserAdded.emit(newUser);
-      console.log( { newUser })
-      this.router.navigate([`/${newUser.id}`]);
+      const { id } = newUser;
+      this.router.navigate(['/user', id]);
     });
   }
 }

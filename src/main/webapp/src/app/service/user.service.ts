@@ -14,6 +14,10 @@ export class UserService {
 	addUser(user : User) : Observable<User> {
 		return this.http.post<User>(`${api}user`, user);
 	}
+
+	getUser(id : number) {
+		return this.http.get<User>(`${api}user/${id}`);
+	}
 	
 	
 }
