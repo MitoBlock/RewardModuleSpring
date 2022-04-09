@@ -6,25 +6,40 @@
     <button class="btn btn-danger btn-lg mx-2">Offers</button>
   </header>
 
+  <h4 class="list-title">Account Info</h4>
   <table class="table table-sm table-light mt-3">
     <thead>
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Account</th>
-        <th scope="col">Tokens</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>{{ name }}</td>
         <td>{{ accountAddress }}</td>
-        <td>
-          <ul class="list-group">
-            <li class="list-group-item tokenAddress" *ngFor="let token of rewardTokens">
-              {{ token }}
-            </li>
-          </ul>
-        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 class="list-title">Current Tokens</h4>
+
+  <table class="table table-sm table-dark mt-3">
+    <thead>
+      <tr>
+        <th scope="col">Creator</th>
+        <th scope="col">Activity</th>
+        <th scope="col">Public Addr</th>
+        <th scope="col">Partner</th>
+        <th scope="col">Expiry</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let token of rewardTokens">
+        <td>{{ token.activityCreator }}</td>
+        <td>{{ token.activityName }}</td>
+        <td class="tokenAddress">{{ token.publicAddress }}</td>
+        <td>{{ token.reward.targetPartner }}</td>
+        <td>{{ token.reward.expiryDate.split('T')[0] }}</td>
       </tr>
     </tbody>
   </table>

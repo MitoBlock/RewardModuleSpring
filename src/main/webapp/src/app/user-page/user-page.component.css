@@ -3,19 +3,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 125px;
+  padding-left: 100px;
+  padding-right: 100px;
   justify-content: center;
-  height: 100vh;
   max-width: 100%;
   background-image: url('../../assets/images/view2-bg.jpg');
   background-size: cover;
 }
 
+table {
+  table-layout: fixed;
+}
+
 .header {
   height: 200px;
   width: 100%;
-  margin-top: 50px;
-  
 }
 
 .logo-container {
@@ -99,5 +101,5 @@
   text-overflow: ellipsis;
   overflow:hidden;
   white-space:nowrap;
-  width: 200px;
+  width: 100px;
 }
