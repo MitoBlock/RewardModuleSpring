@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SelectMultipleControlValueAccessor } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RewardToken } from '../models/reward-token';
 import { User } from '../models/user';
@@ -15,6 +16,8 @@ export class UserPageComponent implements OnInit {
   rewardTokens: RewardToken[] = [];
   accountId = -1;
   id = -1;
+  showTimer = false;
+  counter = 5;
 
   constructor(
     private userService: UserService,
@@ -26,13 +29,44 @@ export class UserPageComponent implements OnInit {
     this.router.navigate(['/user', this.id, 'offers']);
   }
 
-  learnedTacos() {
-    const tokenId = 1;
+  handleMakeTacos() {
     const rewardToken: RewardToken = {
-      // id: tokenId,
-      // dateTime: '',
+      activityName: 'Challenge: Make Tacos',
+      activityCreator: 'Sukhdev',
+      publicAddress: this.accountAddress,
+      result: {
+        score: 10,
+        message: 'Well done!',
+      },
+      reward: {
+        type: 'Membership',
+        value: 1,
+        targetPartner: 'Jacks Restaurant',
+      },
+    };
+
+
+    this.showTimer = true;
+    let timer = setInterval(() => {
+      if (this.counter <= 0) {
+        clearInterval(timer);
+        this.showTimer = false
+          this.userService
+            .addToken(rewardToken, this.accountId)
+            .subscribe((account) => {
+              this.rewardTokens = account.rewardTokens;
+            });
+      }
+      this.counter--
+    }, 1000);
+
+  }
+
+  // handle learned tacos button click
+  learnedTacos() {
+    const rewardToken: RewardToken = {
       activityName: 'Learn to make tacos',
-      activityCreator: 'Sukhdev Banwait',
+      activityCreator: 'Sukhdev',
       publicAddress: this.accountAddress,
       result: {
         score: 10,
@@ -44,12 +78,14 @@ export class UserPageComponent implements OnInit {
         targetPartner: 'Little Chef',
         // expiryDate : set in spring to be in 5 days
       },
-    } 
-    this.userService.addToken(rewardToken, this.accountId ).subscribe((account) => {
-      console.log( { account } );
-      this.rewardTokens = account.rewardTokens;
-      console.log({ rtokens: this.rewardTokens });
-    });
+    };
+    this.userService
+      .addToken(rewardToken, this.accountId)
+      .subscribe((account) => {
+        console.log({ account });
+        this.rewardTokens = account.rewardTokens;
+        console.log({ rtokens: this.rewardTokens });
+      });
   }
 
   ngOnInit() {

@@ -75,7 +75,10 @@
         <img src="../../assets/images/Taco2.jpg" alt="" class="short-img" />
       </div>
     </div>
-    <button class="btn btn-dark btn-lg">Start</button>
+    <div *ngIf="showTimer" class="counter h3 text-danger">{{ counter }}</div>
+    <button class="btn btn-dark btn-lg" (click)="handleMakeTacos()">
+      Start
+    </button>
   </div>
   <div class="score-card-and-img mt-3">
     <div class="d-flex flex-column">
