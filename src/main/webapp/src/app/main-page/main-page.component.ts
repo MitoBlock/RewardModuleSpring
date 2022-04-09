@@ -16,13 +16,20 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {}
 
   onUserAdd(data: any) {
-    let user = new User(data.name);
+    if(data.name.length > 0) {
+      let user = new User(data.name);
 
-    this.userService.addUser(user).subscribe((newUser: User) => {
-      this.addUserName = '';
-      this.userService.onUserAdded.emit(newUser);
-      const { id } = newUser;
-      this.router.navigate(['/user', id]);
-    });
+      this.userService.addUser(user).subscribe((newUser: User) => {
+        this.addUserName = '';
+        this.userService.onUserAdded.emit(newUser);
+        const { id } = newUser;
+        this.router.navigate(['/user', id]);
+      });
+    }
+
+    else {
+      alert('Please enter the name');
+    }
+    
   }
 }
