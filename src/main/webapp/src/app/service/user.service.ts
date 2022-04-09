@@ -23,10 +23,7 @@ export class UserService {
 	
 	constructor(private http: HttpClient){}
 
-	// addToken(accountId : number, tokenId: number) : Observable<Account> {
 	addToken(rewardToken : RewardToken, accountId : number) : Observable<Account> {
-		// return this.http.post<Account>(`${api}reward/${accountId}`, {accountId, tokenId});
-		// return this.http.post<Account>(`${api}reward/${accountId}`, rewardToken );
 		return this.http.post<Account>(`${api}rewardToken`, rewardToken, HTTP_OPTIONS);
 	}
 	

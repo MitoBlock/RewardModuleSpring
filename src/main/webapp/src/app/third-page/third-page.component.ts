@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { RewardToken } from '../models/reward-token';
 import { User } from '../models/user';
 import { UserService } from '../service/user.service';
 
@@ -12,14 +13,33 @@ export class ThirdPageComponent implements OnInit {
 
   name = '';
   accountAddress = '';
-  rewardTokens: string[] = [];
-  id = -1
+  rewardTokens: RewardToken[] = [];
+  accountId = -1;
+  id = -1;
 
   constructor(
     private userService: UserService,
     private router: Router,
     private route: ActivatedRoute,
   ) {}
+
+  handleDeleteDiscountToken() {
+    for ( let token of this.rewardTokens) {
+      if (token.activityName == "Discount") {
+        // send request to delete token and update the list
+        /*
+          this.userService
+            .removeToken(rewardToken, this.accountId)
+            .subscribe((account) => {
+              this.rewardTokens = account.rewardTokens;
+            }); */
+      } 
+
+    }
+  }
+
+
+
 
   handleMainSubmit(info : any) {
     this.router.navigate(['/user', this.id, 'offers']);

@@ -21,6 +21,8 @@ import ca.sheridancollege.blockheads.services.RewardService;
 import ca.sheridancollege.blockheads.services.RewardTokenService;
 import lombok.AllArgsConstructor;
 
+// TODO: delete this file! ?
+
 //@AllArgsConstructor
 @Component
 public class PostBootstrap implements CommandLineRunner {

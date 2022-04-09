@@ -1,11 +1,13 @@
 package ca.sheridancollege.blockheads.services;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import antlr.Token;
 import ca.sheridancollege.blockheads.domain.Account;
 import ca.sheridancollege.blockheads.domain.Result;
 import ca.sheridancollege.blockheads.domain.Reward;
@@ -66,6 +68,15 @@ public class AccountServiceImpl implements AccountService {
 		rewardToken.setResult(savedResult);
 		RewardToken savedRewardToken = rewardTokenRepository.save(rewardToken);
 		account.getRewardTokens().add(savedRewardToken);
+		return accountRepository.save(account);
+
+	}
+
+	@Override
+	public Account deleteRewardToken(RewardToken rewardToken) {
+		Account account = accountRepository.findByPublicAddress(rewardToken.getPublicAddress());
+		List<RewardToken> rewardTokens = account.getRewardTokens();
+		rewardTokens.removeIf(t -> t.getId() == rewardToken.getId());
 		return accountRepository.save(account);
 
 	}

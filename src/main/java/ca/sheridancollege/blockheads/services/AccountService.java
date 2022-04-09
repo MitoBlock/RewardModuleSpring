@@ -9,5 +9,6 @@ public interface AccountService {
 	public Account save(Account account);
 	public Account addToken(Long accId, Long tokenId);
 	public Account saveRewardToken(RewardToken rewardToken);
+	public Account deleteRewardToken(RewardToken rewardToken);
 
 }

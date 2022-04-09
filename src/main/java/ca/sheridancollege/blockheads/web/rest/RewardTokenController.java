@@ -2,6 +2,7 @@ package ca.sheridancollege.blockheads.web.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,13 +27,16 @@ public class RewardTokenController {
 	@Autowired
 	private AccountService accountService;
 	
-//	@PostMapping("/rewardToken")
 	@PostMapping
 	public Account save(@RequestBody RewardToken rewardToken) {
 		System.out.println(" spring received the following token from ang");
 		System.out.println(rewardToken);
 		return accountService.saveRewardToken(rewardToken);
-//		return rewardTokenRepository.save(rewardToken);
+	}
+	@DeleteMapping
+	public Account delete(@RequestBody RewardToken rewardToken) {
+		System.out.println(rewardToken);
+		return accountService.deleteRewardToken(rewardToken);
 	}
 
 
