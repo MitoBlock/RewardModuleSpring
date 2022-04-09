@@ -39,7 +39,7 @@
         <td>{{ token.activityName }}</td>
         <td class="tokenAddress">{{ token.publicAddress }}</td>
         <td>{{ token.reward.targetPartner }}</td>
-        <td>{{ token.reward.expiryDate.split('T')[0] }}</td>
+        <td>{{ token.reward.expiryDate!.split('T')[0] }}</td>
       </tr>
     </tbody>
   </table>

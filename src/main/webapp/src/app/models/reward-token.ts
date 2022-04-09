@@ -3,8 +3,8 @@ import { Reward } from "./reward"
 
 export interface RewardToken {
 	
-	id : number
-	dateTime : string
+	id? : number
+	dateTime? : string
 	activityName : string
 	activityCreator : string
 	publicAddress : string

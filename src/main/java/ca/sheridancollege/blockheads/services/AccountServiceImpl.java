@@ -1,13 +1,18 @@
 package ca.sheridancollege.blockheads.services;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ca.sheridancollege.blockheads.domain.Account;
+import ca.sheridancollege.blockheads.domain.Result;
+import ca.sheridancollege.blockheads.domain.Reward;
 import ca.sheridancollege.blockheads.domain.RewardToken;
 import ca.sheridancollege.blockheads.repository.AccountRepository;
+import ca.sheridancollege.blockheads.repository.ResultRepository;
+import ca.sheridancollege.blockheads.repository.RewardRepository;
 import ca.sheridancollege.blockheads.repository.RewardTokenRepository;
 import lombok.AllArgsConstructor;
 
@@ -17,6 +22,8 @@ public class AccountServiceImpl implements AccountService {
 	
 	private AccountRepository accountRepository;
 	private RewardTokenRepository rewardTokenRepository;
+	private ResultRepository resultRepository;
+	private RewardRepository rewardRepository;
 
 
 	@Override
@@ -39,6 +46,26 @@ public class AccountServiceImpl implements AccountService {
 		account.getRewardTokens().add(rewardToken);
 		System.out.println("saving following account in account service: ");
 		System.out.println(account);
+		return accountRepository.save(account);
+
+	}
+
+	@Override
+	public Account saveRewardToken(RewardToken rewardToken) {
+		LocalDateTime timeInFiveDays = LocalDateTime.now().plusDays(5);
+		Account account = accountRepository.findByPublicAddress(rewardToken.getPublicAddress());
+		rewardToken.setDateTime(LocalDateTime.now());
+
+		Reward reward = rewardToken.getReward();
+		reward.setExpiryDate(timeInFiveDays);
+		Result result = rewardToken.getResult();
+		
+		Reward savedReward = rewardRepository.save(reward);
+		Result savedResult = resultRepository.save(result);
+		rewardToken.setReward(savedReward);
+		rewardToken.setResult(savedResult);
+		RewardToken savedRewardToken = rewardTokenRepository.save(rewardToken);
+		account.getRewardTokens().add(savedRewardToken);
 		return accountRepository.save(account);
 
 	}

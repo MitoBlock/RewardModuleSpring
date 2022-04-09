@@ -1,5 +1,5 @@
 export interface Result {
-	id : number
+	id? : number
 	score : number
 	message : string
 }

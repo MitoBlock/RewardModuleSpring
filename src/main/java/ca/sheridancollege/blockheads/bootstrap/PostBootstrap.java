@@ -36,7 +36,7 @@ public class PostBootstrap implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		
+		/*
 		RewardToken token = new RewardToken();
 		String originalString = "someToken";
 		String hashed = Hashing.sha256()
@@ -68,6 +68,7 @@ public class PostBootstrap implements CommandLineRunner {
 		RewardToken savedToken = rewardTokenService.save(token);
 		
 		System.out.println(savedToken);
+		*/
 
 	}
 }

@@ -1,10 +1,21 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { EventEmitter, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Account } from "../models/account";
+import { RewardToken } from "../models/reward-token";
 import { User } from "../models/user";
 import { api } from "./api";
 
+export const HTTP_OPTIONS = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Credentials': 'true',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE, PUT, OPTIONS',
+    'Access-Control-Allow-Headers':
+      'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
+  }),
+};
 @Injectable()
 export class UserService {
 	
@@ -12,8 +23,11 @@ export class UserService {
 	
 	constructor(private http: HttpClient){}
 
-	addToken(accountId : number, tokenId: number) : Observable<Account> {
-		return this.http.post<Account>(`${api}reward/addToken`, {accountId, tokenId});
+	// addToken(accountId : number, tokenId: number) : Observable<Account> {
+	addToken(rewardToken : RewardToken, accountId : number) : Observable<Account> {
+		// return this.http.post<Account>(`${api}reward/${accountId}`, {accountId, tokenId});
+		// return this.http.post<Account>(`${api}reward/${accountId}`, rewardToken );
+		return this.http.post<Account>(`${api}rewardToken`, rewardToken, HTTP_OPTIONS);
 	}
 	
 	addUser(user : User) : Observable<User> {
