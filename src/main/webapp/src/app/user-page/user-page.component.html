@@ -6,12 +6,12 @@
     <button class="btn btn-danger btn-lg mx-2">Offers</button>
   </header>
 
-  <h4 class="list-title">Account Info</h4>
+  <h1 class="list-title">Account Info</h1>
   <table class="table table-sm table-light mt-3">
     <thead>
       <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Account</th>
+        <th scope="col" class="col-ob">Name</th>
+        <th scope="col" class="col-bo">Account</th>
       </tr>
     </thead>
     <tbody>
@@ -21,32 +21,49 @@
       </tr>
     </tbody>
   </table>
-  <h4 class="list-title">Current Tokens</h4>
+  <br />
+  <h2 class="list-title">Current Tokens</h2>
 
   <table class="table table-sm table-dark mt-3">
+    <thead>
+      <tr>
+        <th colspan="3" class="col-ob">Task / Activity</th>
+        <th colspan="2" class="col-bo">Result</th>
+        <th colspan="4" class="col-ob">Reward</th>
+      </tr>
+    </thead>
     <thead>
       <tr>
         <th scope="col">Creator</th>
         <th scope="col">Activity</th>
         <th scope="col">Public Addr</th>
+        <th scope="col">Score</th>
+        <th scope="col">Message</th>
+        <th scope="col">Reward type</th>
+        <th scope="col">Value</th>
         <th scope="col">Partner</th>
         <th scope="col">Expiry</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let token of rewardTokens">
+      <tr *ngFor="let token of rewardTokens" class="col-bo-token">
         <td>{{ token.activityCreator }}</td>
         <td>{{ token.activityName }}</td>
-        <td class="tokenAddress">{{ token.publicAddress }}</td>
+        <td class="tokenAddress col-bo">{{ token.publicAddress }}</td>
+        <td>{{ token.result.score }}</td>
+        <td>{{ token.result.message }}</td>
+        <td>{{ token.reward.type }}</td>
+        <td>{{ token.reward.value }}</td>
         <td>{{ token.reward.targetPartner }}</td>
         <td>{{ token.reward.expiryDate!.split('T')[0] }}</td>
       </tr>
     </tbody>
   </table>
 
-  <div
-    class="card-and-button mt-4 d-flex align-items-center justify-content-between w-100"
-  >
+  <br />
+
+  <h1 class="list-title">Activities</h1>
+
     <div class="card-container card-two-col">
       <div class="d-flex flex-column justify-content-center px-2">
         <h6 class="card-title m-0">Learn to make tacos</h6>
@@ -56,12 +73,15 @@
         <img src="../../assets/images/Taco1.jpg" alt="" class="long-img" />
       </div>
     </div>
-    <button class="btn btn-dark btn-lg" (click)="learnedTacos()">Submit</button>
-  </div>
 
-  <div
-    class="card-and-button mt-4 d-flex align-items-center justify-content-between w-100"
-  >
+    <br />
+    
+  <button class="btn btn-dark btn-lg blk-btn" (click)="learnedTacos()">Submit</button>
+
+  <br />
+  <br />
+  
+
     <div class="card-container card-three-col">
       <div class="d-flex flex-column justify-content-center px-2">
         <h6 class="card-title m-0">Challenge: Make tacos</h6>
@@ -75,11 +95,19 @@
         <img src="../../assets/images/Taco2.jpg" alt="" class="short-img" />
       </div>
     </div>
+
     <div *ngIf="showTimer" class="counter h3 text-danger">{{ counter }}</div>
-    <button class="btn btn-dark btn-lg" (click)="handleMakeTacos()">
+
+    <br />
+  
+    <button class="btn btn-dark btn-lg blk-btn" (click)="handleMakeTacos()">
       Start
     </button>
-  </div>
+
+    <br />
+  <br />
+  
+
   <div class="score-card-and-img mt-3">
     <div class="d-flex flex-column">
       <h6 class="score-title">Weekly Score</h6>
@@ -94,7 +122,9 @@
     <img src="../../assets/images/Taco3.jpg" alt="" class="score-img" />
   </div>
 
-  <button class="btn-dark btn-lg mb-5 mt-2" (click)="handleMainSubmit('hello')">
+  <br />
+
+  <button class="btn-dark btn-lg mb-5 mt-2 blk-btn" (click)="handleMainSubmit('hello')">
     Submit
   </button>
 </div>
