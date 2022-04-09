@@ -2,7 +2,9 @@ package ca.sheridancollege.blockheads.web.rest;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,13 +16,14 @@ import ca.sheridancollege.blockheads.services.UserService;
 
 @RestController
 @RequestMapping("/api/user")
+@CrossOrigin
 public class UserController {
 	
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping(value = {"", "/"})
-	public User getUser(Long id) {
+	@GetMapping(value = {"{id}", "/{id}"})
+	public User getUser(@PathVariable Long id) {
 		return userService.findById(id);
 	}
 	

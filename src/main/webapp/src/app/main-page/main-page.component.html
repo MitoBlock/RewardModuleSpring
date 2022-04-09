@@ -5,14 +5,23 @@
       src="../../assets/images/Little Chef-logos.jpeg"
       alt="logo"
     />
-
-		<div class="input-container">
-			<form #userForm = "ngForm" (ngSubmit) = "onUserAdd(userForm.value)">
-				<input type="text" class="form-control" placeholder="Enter Name" name="name" [(ngModel)]="addUserName" required >
-				<input type="submit" value="Submit" class="btn btn-primary btn-lg">
-  			</form>
-		</div>
   </div>
 
-  
+  <div class="input-container w-25">
+    <form
+      class="d-flex flex-column align-items-center"
+      #userForm="ngForm"
+      (ngSubmit)="onUserAdd(userForm.value)"
+    >
+      <input
+        type="text"
+        class="form-control mb-2"
+        placeholder="Enter Name"
+        name="name"
+        [(ngModel)]="addUserName"
+        required
+      />
+      <input type="submit" value="Submit" class="ml-1 btn btn-primary btn-lg" />
+    </form>
+  </div>
 </div>
