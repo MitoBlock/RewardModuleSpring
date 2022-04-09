@@ -6,5 +6,6 @@ public interface AccountService {
 	
 	public Account findById(Long id);
 	public Account save(Account account);
+	public Account addToken(Long accId, Long tokenId);
 
 }

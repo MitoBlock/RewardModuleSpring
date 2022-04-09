@@ -43,19 +43,21 @@ public class PostBootstrap implements CommandLineRunner {
 				  .hashString(originalString, StandardCharsets.UTF_8)
 				  .toString();
 		token.setPublicAddress(hashed);
-		token.setActivityName("First time using app");
+		token.setActivityName("Learned Taco Making");
 		token.setDateTime(LocalDateTime.now());
-		token.setActivityCreator("Testman");
+		token.setActivityCreator("Taco Bell");
+
 		Result result = new Result();
-		result.setMessage("Congrats!");
+		result.setMessage("Congrats on learning to make tacos!");
 		result.setScore(7);
+
 		Reward reward = new Reward();
 		LocalDateTime futureDateTime = LocalDateTime.of(2023,
 				Month.JULY, 29, 19, 30, 40);
 		reward.setExpiryDate(futureDateTime);
-		reward.setTargetPartner("FooBazz");
+		reward.setTargetPartner("Wendys");
 		reward.setType("Coupon");
-		reward.setValue(10);
+		reward.setValue(10); 
 		
 		Reward savedReward = rewardService.save(reward);
 		Result savedResult = resultService.save(result);

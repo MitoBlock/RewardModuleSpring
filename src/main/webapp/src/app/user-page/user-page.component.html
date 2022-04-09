@@ -18,7 +18,13 @@
       <tr>
         <td>{{ name }}</td>
         <td>{{ accountAddress }}</td>
-        <td></td>
+        <td>
+          <ul class="list-group">
+            <li class="list-group-item tokenAddress" *ngFor="let token of rewardTokens">
+              {{ token }}
+            </li>
+          </ul>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -35,7 +41,7 @@
         <img src="../../assets/images/Taco1.jpg" alt="" class="long-img" />
       </div>
     </div>
-    <button class="btn btn-dark btn-lg">Submit</button>
+    <button class="btn btn-dark btn-lg" (click)="learnedTacos()">Submit</button>
   </div>
 
   <div
