@@ -113,9 +113,11 @@
     <div class="d-flex flex-column">
       <h6 class="score-title">Weekly Score</h6>
       <input
-        type="text"
+        type="number"
         class="w-75 my-2 form-control-sm"
         placeholder="Enter your score"
+        (ngModel)="score"
+        (keyup)="onKeyChangeScore($event)"
       />
       <p class="m-0">Lesser than 3-5 Points</p>
       <p class="m-0">Else - 10 points</p>
@@ -125,7 +127,7 @@
 
   <br />
 
-  <button class="btn-dark btn-lg mb-5 mt-2 blk-btn" (click)="handleMainSubmit('hello')">
+  <button class="btn-dark btn-lg mb-5 mt-2 blk-btn" (click)="handleMainSubmit()">
     Submit
   </button>
 </div>

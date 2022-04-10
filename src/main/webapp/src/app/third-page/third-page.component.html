@@ -1,11 +1,12 @@
-<div class="third-container">
-  <div class="class_image">
-    <img
-      class="main-logo"
+<div class="third-container p-3">
+  <header class="header d-flex justify-content-between align-items-center">
+    <div class="logo-container">
+      <img class="logo"
+      
       src="../../assets/images/Little Chef-logos.jpeg"
-      alt="logo"
-    />
-  </div>
+       alt="logo" />
+    </div>
+  </header>
 
   <table class="table table-light mt-3 w-75">
     <thead>
@@ -99,7 +100,7 @@
       </div>
     </div>
     <div>
-      <a class="btn btn-lg btn-dark"> Use </a>
+      <button class="btn btn-lg btn-dark" (click)="handleUsePoints()"> Use </button>
     </div>
   </div>
 

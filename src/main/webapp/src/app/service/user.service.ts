@@ -16,18 +16,24 @@ export const HTTP_OPTIONS = {
       'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
   }),
 };
+
 @Injectable()
 export class UserService {
 	
 	onUserAdded = new EventEmitter<User>();
+
 	constructor(private http: HttpClient){}
+
+  reduceTokenPoints(token: RewardToken) : Observable<Account>  {
+		return this.http.put<Account>(`${api}rewardToken/${token.id}`, {});
+  }
 
 	removeToken(rewardToken : RewardToken) : Observable<Account> {
 		// should be delete action, but that doesn't allow body
 		return this.http.put<Account>(`${api}rewardToken`, rewardToken);
   }
 
-	addToken(rewardToken : RewardToken, accountId : number) : Observable<Account> {
+	addToken(rewardToken : RewardToken) : Observable<Account> {
 		return this.http.post<Account>(`${api}rewardToken`, rewardToken, HTTP_OPTIONS);
 	}
 	

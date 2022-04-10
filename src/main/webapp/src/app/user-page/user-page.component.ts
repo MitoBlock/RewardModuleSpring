@@ -13,6 +13,7 @@ import { UserService } from '../service/user.service';
 
 export class UserPageComponent implements OnInit {
   name = '';
+  score = 0;
   accountAddress = '';
   rewardTokens: RewardToken[] = [];
   accountId = -1;
@@ -26,9 +27,32 @@ export class UserPageComponent implements OnInit {
     private route: ActivatedRoute,
   ) {}
 
-  // TODO: add functionality of some kind
-  handleMainSubmit(info: any) {
-    this.router.navigate(['/user', this.id, 'offers']);
+
+    onKeyChangeScore(event: KeyboardEvent) { 
+     this.score = +(event.target as HTMLInputElement).value 
+  }
+
+  handleMainSubmit() {
+    const rewardToken: RewardToken = {
+      activityName: 'Weekly Score',
+      activityCreator: 'Sukhdev',
+      publicAddress: this.accountAddress,
+      result: {
+        score: this.score,
+        message: 'Well done!',
+      },
+      reward: {
+        type: 'Points',
+        value: this.score < 3 ? 5 : 10,
+        targetPartner: 'Little Chef'
+      },
+    };
+
+    this.userService
+      .addToken(rewardToken)
+      .subscribe((account) => {
+        this.rewardTokens = account.rewardTokens;
+      });
   }
 
   handleOffersClick() {
@@ -58,7 +82,7 @@ export class UserPageComponent implements OnInit {
         clearInterval(timer);
         this.showTimer = false
           this.userService
-            .addToken(rewardToken, this.accountId)
+            .addToken(rewardToken)
             .subscribe((account) => {
               this.rewardTokens = account.rewardTokens;
             });
@@ -82,28 +106,22 @@ export class UserPageComponent implements OnInit {
         type: 'Discount',
         value: 5,
         targetPartner: 'Little Chef',
-        // expiryDate : set in spring to be in 5 days
       },
     };
     this.userService
-      .addToken(rewardToken, this.accountId)
+      .addToken(rewardToken)
       .subscribe((account) => {
-        console.log({ account });
         this.rewardTokens = account.rewardTokens;
-        console.log({ rtokens: this.rewardTokens });
       });
   }
 
   ngOnInit() {
-    console.log({ tokens: this.rewardTokens });
     this.id = this.route.snapshot.params['id'];
     this.userService.getUser(this.id).subscribe((user: User) => {
       this.name = user.name;
       this.accountAddress = user.account?.publicAddress ?? '';
       this.accountId = user.account?.id ?? -1;
       this.rewardTokens = user.account?.rewardTokens ?? [];
-      console.log({ newUserGetted: user });
-      // this.router.navigate([`/${newUser.id}`]);
     });
   }
 }

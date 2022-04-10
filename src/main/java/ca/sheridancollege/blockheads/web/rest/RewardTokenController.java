@@ -30,28 +30,15 @@ public class RewardTokenController {
 	
 	@PostMapping
 	public Account save(@RequestBody RewardToken rewardToken) {
-		System.out.println(" spring received the following token from ang");
-		System.out.println(rewardToken);
 		return accountService.saveRewardToken(rewardToken);
 	}
 	@PutMapping
 	public Account delete(@RequestBody RewardToken rewardToken) {
-		System.out.println("received the following in put mapping...");
-		System.out.println(rewardToken);
 		return accountService.deleteRewardToken(rewardToken);
 	}
-
-
-	/*
-	@PostMapping("/{id}")
-	public Account addToken(@PathVariable String id,
-			@RequestBody AccountTokenDTO accToken) {
-		System.out.println("id is " + id);
-		System.out.println("entering reward token endpoint in reward token controller");
-		System.out.println(accToken);
-		return accountService.addToken(accToken.getAccountId(),
-				accToken.getTokenId());			
-
+	@PutMapping("/{id}")
+	public Account reducePoints(@PathVariable Long id) {
+		return accountService.reducePoints(id);
 	}
-	*/
+
 }

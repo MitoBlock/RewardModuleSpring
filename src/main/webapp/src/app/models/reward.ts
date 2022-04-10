@@ -4,6 +4,4 @@ export interface Reward {
 	value : number
 	targetPartner : string
 	expiryDate? : string
-	// const d = new Date(yourDateStringFromServer);
-
 }

@@ -80,5 +80,20 @@ public class AccountServiceImpl implements AccountService {
 		return accountRepository.save(account);
 
 	}
+
+	// this method assumes there is at least 6 'points' in the reward
+	@Override
+	public Account reducePoints(Long rewardTokenId) {
+		RewardToken rewardToken = rewardTokenRepository.findById(rewardTokenId).get();
+		
+		Reward reward = rewardToken.getReward();
+		int currValue = reward.getValue();
+		if (currValue <= 5) System.out.println("oops, something went wrong");
+		reward.setValue(currValue - 5);
+		rewardRepository.save(reward);
+		return accountRepository
+				.findByPublicAddress(rewardToken.getPublicAddress());
+		
+	}
 	
 }
