@@ -7,5 +7,5 @@ import ca.sheridancollege.blockheads.domain.Account;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
-
+	Account findByPublicAddress(String publicAddress);
 }

@@ -21,6 +21,8 @@ import ca.sheridancollege.blockheads.services.RewardService;
 import ca.sheridancollege.blockheads.services.RewardTokenService;
 import lombok.AllArgsConstructor;
 
+// TODO: delete this file! ?
+
 //@AllArgsConstructor
 @Component
 public class PostBootstrap implements CommandLineRunner {
@@ -36,7 +38,7 @@ public class PostBootstrap implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		
+		/*
 		RewardToken token = new RewardToken();
 		String originalString = "someToken";
 		String hashed = Hashing.sha256()
@@ -68,6 +70,7 @@ public class PostBootstrap implements CommandLineRunner {
 		RewardToken savedToken = rewardTokenService.save(token);
 		
 		System.out.println(savedToken);
+		*/
 
 	}
 }
