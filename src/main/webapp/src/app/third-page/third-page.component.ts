@@ -23,34 +23,31 @@ export class ThirdPageComponent implements OnInit {
     private route: ActivatedRoute,
   ) {}
 
-  handleDeleteDiscountToken() {
+  handleUseDiscount() {
     for ( let token of this.rewardTokens) {
-      if (token.activityName == "Discount") {
+      if (token.activityName == "Learn to make tacos") { //   "Discount") {
         // send request to delete token and update the list
-        /*
-          this.userService
-            .removeToken(rewardToken, this.accountId)
+          this.userService.removeToken(token)
             .subscribe((account) => {
+              console.log({ accAfterDelete: account });
               this.rewardTokens = account.rewardTokens;
-            }); */
+            })
       } 
 
     }
   }
 
-
-
-
   handleMainSubmit(info : any) {
     this.router.navigate(['/user', this.id, 'offers']);
   }
+
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.userService.getUser(this.id).subscribe((user: User) => {
       this.name = user.name;
       this.accountAddress = user.account?.publicAddress ?? '';
-      console.log({ newUserGetted: user });
-      // this.router.navigate([`/${newUser.id}`]);
+      this.accountId = user.account?.id ?? -1;
+      this.rewardTokens = user.account?.rewardTokens ?? [];
     });
   }
 

@@ -10,6 +10,7 @@ import { UserService } from '../service/user.service';
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.css'],
 })
+
 export class UserPageComponent implements OnInit {
   name = '';
   accountAddress = '';
@@ -25,7 +26,12 @@ export class UserPageComponent implements OnInit {
     private route: ActivatedRoute,
   ) {}
 
+  // TODO: add functionality of some kind
   handleMainSubmit(info: any) {
+    this.router.navigate(['/user', this.id, 'offers']);
+  }
+
+  handleOffersClick() {
     this.router.navigate(['/user', this.id, 'offers']);
   }
 

@@ -12,17 +12,59 @@
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Account</th>
-        <th scope="col">Tokens</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>{{ name }}</td>
         <td>{{ accountAddress }}</td>
-        <td></td>
       </tr>
     </tbody>
   </table>
+
+
+  <h2 class="list-title">Current Tokens</h2>
+
+  <table class="table table-sm table-dark mt-3">
+    <thead>
+      <tr>
+        <th colspan="3" class="col-ob">Task / Activity</th>
+        <th colspan="2" class="col-bo">Result</th>
+        <th colspan="4" class="col-ob">Reward</th>
+      </tr>
+    </thead>
+    <thead>
+      <tr>
+        <th scope="col">Creator</th>
+        <th scope="col">Activity</th>
+        <th scope="col">Public Addr</th>
+        <th scope="col">Score</th>
+        <th scope="col">Message</th>
+        <th scope="col">Reward type</th>
+        <th scope="col">Value</th>
+        <th scope="col">Partner</th>
+        <th scope="col">Expiry</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let token of rewardTokens" class="col-bo-token">
+        <td>{{ token.activityCreator }}</td>
+        <td>{{ token.activityName }}</td>
+        <td class="tokenAddress col-bo">{{ token.publicAddress }}</td>
+        <td>{{ token.result.score }}</td>
+        <td>{{ token.result.message }}</td>
+        <td>{{ token.reward.type }}</td>
+        <td>{{ token.reward.value }}</td>
+        <td>{{ token.reward.targetPartner }}</td>
+        <td>{{ token.reward.expiryDate!.split('T')[0] }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
+
+
+
 
   <div class="d-flex justify-content-around w-100 align-items-center">
     <div class="coupon-card">
@@ -37,7 +79,7 @@
       </div>
     </div>
     <div>
-      <a class="btn btn-lg btn-dark"> Use </a>
+      <button class="btn btn-lg btn-dark" (click)="handleUseDiscount()"> Use </button>
     </div>
   </div>
 

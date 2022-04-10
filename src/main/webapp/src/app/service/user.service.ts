@@ -20,8 +20,12 @@ export const HTTP_OPTIONS = {
 export class UserService {
 	
 	onUserAdded = new EventEmitter<User>();
-	
 	constructor(private http: HttpClient){}
+
+	removeToken(rewardToken : RewardToken) : Observable<Account> {
+		// should be delete action, but that doesn't allow body
+		return this.http.put<Account>(`${api}rewardToken`, rewardToken);
+  }
 
 	addToken(rewardToken : RewardToken, accountId : number) : Observable<Account> {
 		return this.http.post<Account>(`${api}rewardToken`, rewardToken, HTTP_OPTIONS);
