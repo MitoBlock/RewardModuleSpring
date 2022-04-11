@@ -35,7 +35,7 @@ export class UserPageComponent implements OnInit {
   handleMainSubmit() {
     const rewardToken: RewardToken = {
       activityName: 'Weekly Score',
-      activityCreator: 'Sukhdev',
+      activityCreator: 'Little Chef',
       publicAddress: this.accountAddress,
       result: {
         score: this.score,
@@ -69,7 +69,7 @@ export class UserPageComponent implements OnInit {
         message: 'Well done!',
       },
       reward: {
-        type: 'Membership',
+        type: 'Monthly Membership',
         value: 1,
         targetPartner: 'Jacks Restaurant',
       },
