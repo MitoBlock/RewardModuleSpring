@@ -14,12 +14,16 @@
       <tr>
         <th scope="col" class="col-ob">Name</th>
         <th scope="col" class="col-bo">Account</th>
+        <th scope="col" class="col-bo">Type (denom)</th>
+        <th scope="col" class="col-bo">Value (coins)</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>{{ name }}</td>
-        <td>{{ accountAddress }}</td>
+        <td>cosmos1lvulxgqav560jjstnpk0k57nsjn0tv8mme54hh</td>
+        <td>mitocell</td>
+        <td> 200 </td>
       </tr>
     </tbody>
   </table>
@@ -52,7 +56,7 @@
       <tr *ngFor="let token of rewardTokens" class="col-bo-token">
         <td>{{ token.activityCreator }}</td>
         <td>{{ token.activityName }}</td>
-        <td class="tokenAddress">{{ token.publicAddress }}</td>
+        <td class="tokenAddress"> cosmos1ejz34s6mf4wlmwhe3dv8tdk0skdynx4zzm6xf7 </td>
         <td>{{ token.result.score }}</td>
         <td>{{ token.result.message }}</td>
         <td>{{ token.reward.type }}</td>

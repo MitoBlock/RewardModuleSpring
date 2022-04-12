@@ -150,3 +150,7 @@ h3{
   width: 150px;
   height: 70px;
 }
+
+td{
+	text-align: center;
+}
